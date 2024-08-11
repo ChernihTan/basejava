@@ -16,13 +16,24 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r3);
 
+        try {
         System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.uuid));
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("Size: " + ARRAY_STORAGE.size());
 
+        try {
         System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
-
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
         printAll();
+        try {
         ARRAY_STORAGE.delete(r1.uuid);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
         printAll();
         ARRAY_STORAGE.clear();
         printAll();
