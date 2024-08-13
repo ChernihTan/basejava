@@ -30,7 +30,9 @@ public class MainTestArrayStorage {
         }
         printAll();
         try {
-            ARRAY_STORAGE.delete(r1.uuid);
+            // ARRAY_STORAGE.delete(r1.uuid);
+            // Удаление резюме, если оно находится в последней ячейке массива
+            ARRAY_STORAGE.delete(r3.uuid);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }

@@ -4,7 +4,7 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private static final int RESUMES_LIMIT = 10000;
+    private static final int RESUMES_LIMIT = 3;  // 10000;
     Resume[] storage = new Resume[RESUMES_LIMIT];
     private int countResumes;
 
@@ -14,8 +14,8 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        if (countResumes == RESUMES_LIMIT) {
-            throw new RuntimeException("Количесто резюме больше " + RESUMES_LIMIT + "\n");
+        if (countResumes >= RESUMES_LIMIT) {
+            throw new RuntimeException("Количество резюме больше " + RESUMES_LIMIT + "\n");
         }
         storage[countResumes++] = r;
     }
@@ -23,7 +23,7 @@ public class ArrayStorage {
     Resume get(String uuid) {
         // нужно найти индекс элемента в массиве, под которым храниться данный элемент
         int position = findIndex(uuid);
-        if (!(position >= 0 && position < RESUMES_LIMIT)) {
+        if (position < 0 || position >= RESUMES_LIMIT) {
             throw new RuntimeException("Указанный идентификатор не найден!\n");
         }
         return storage[position];
