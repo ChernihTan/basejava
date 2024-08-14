@@ -39,6 +39,9 @@ public class ArrayStorage {
         if (position != --countResumes) {
             storage[position] = storage[countResumes];
         }
+        // условие для удаления объекта из памяти  - отсутствие на него ссылок
+        // удление последнего резюме
+        storage[countResumes] = null;
     }
 
     /**
