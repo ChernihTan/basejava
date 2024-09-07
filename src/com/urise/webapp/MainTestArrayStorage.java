@@ -23,7 +23,7 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r3);
 
-        System.out.println("\nПроверка 1 update() - r4");
+        System.out.println("\nCheck  update() - r4");
         Resume r4 = new Resume();
         try {
             ARRAY_STORAGE.update(r4);
@@ -31,56 +31,48 @@ public class MainTestArrayStorage {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Проверка 2 update() - r5");
-        Resume r5 = null;
-        try {
-            ARRAY_STORAGE.update(r5);
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }
-
-        System.out.println("\nПроверка 1 delete()");
+        System.out.println("\nCheck №1 delete()");
         try {
             ARRAY_STORAGE.delete(null);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Проверка 2 delete()");
+        System.out.println("Check №2 delete()");
         try {
             ARRAY_STORAGE.delete("nnn1");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Проверка 3 delete()");
+        System.out.println("Check №3 delete()");
         try {
             ARRAY_STORAGE.delete("");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("\nПроверка 1 get()");
+        System.out.println("\nCheck №1 get()");
         try {
             System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Проверка 2 get()");
+        System.out.println("Check №2 get()");
         try {
             ARRAY_STORAGE.get(null);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Проверка 3 get()");
+        System.out.println("Check №3 get()");
         try {
             System.out.println("Get r4: " + ARRAY_STORAGE.get(r4.getUuid()));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Проверка 4 get()");
+        System.out.println("Check №4 get()");
         try {
             System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
         } catch (RuntimeException e) {
@@ -88,16 +80,18 @@ public class MainTestArrayStorage {
         }
 
 
-        System.out.println("\nПроверка 1 save()");
+        System.out.println("\nCheck №1 save()");
         try {
             ARRAY_STORAGE.save(r4);
+            System.out.println("Save r4: " + ARRAY_STORAGE.get(r4.getUuid()));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Проверка 2 save()");
+        System.out.println("Check №2 save()");
         try {
             ARRAY_STORAGE.save(r1);
+            System.out.println("Save r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }

@@ -20,12 +20,9 @@ public class ArrayStorage {
     public void update(Resume r) {
         // if resume present
         if (r != null) {
-            if (r.getUuid() != null) {
-                int position = findIndex(r.getUuid());
+            int position = findIndex(r.getUuid());
+            if (position >= 0) {
                 storage[position] = r;
-            } else {
-                // System.out.println("ERROR параметра при вызове метода update(..) ");
-                throw new RuntimeException("ERROR при вызове метода update(..) - идентификтор резюме null");
             }
         } else {
             throw new RuntimeException("ERROR при вызове метода update(..) - объект резюме не создан (null)");
@@ -34,39 +31,39 @@ public class ArrayStorage {
 
     public void save(Resume r) {
         if (r != null) {
-            if (r.getUuid() != null) {
-                // проверка, если существует
-                if (isNewResume(r.getUuid())) {
-                    if (size >= RESUMES_LIMIT) {
-                        throw new RuntimeException("Количество резюме больше " + RESUMES_LIMIT + "\n");
-                    }
-                    storage[size++] = r;
+            int position = findIndex(r.getUuid());
+            if (!isExisting(position)) {
+                if (size >= RESUMES_LIMIT) {
+                    throw new RuntimeException("Количество резюме больше " + RESUMES_LIMIT + "\n");
                 }
+                storage[size++] = r;
             } else {
-                throw new RuntimeException("ERROR при вызове метода save(..) - идентификтор резюме null");
+                throw new RuntimeException("Resume with identifier uuid = \"" + r.getUuid() +
+                        "\" already saved");
             }
         } else {
-            throw new RuntimeException("ERROR при вызове метода update(..) - объект резюме не создан");
+            throw new RuntimeException("ERROR при вызове метода save(..) - объект резюме не создан");
         }
     }
 
     public Resume get(String uuid) {
-        if (uuid != null) {
-            // нужно найти индекс элемента в массиве, под которым храниться данный элемент
-            int position = findIndex(uuid);
+        int position = findIndex(uuid);
+        if (position >= 0) {
             return storage[position];
         } else {
-            throw new RuntimeException("ERROR параметра при вызове метода get(..) -  идентификатор резюме null ");
+            throw new RuntimeException("ERROR - Cannot  get, identifier uuid = \"" + uuid +
+                    "\" not found");
         }
     }
 
     public void delete(String uuid) {
-        if (uuid != null) {
-            int position = findIndex(uuid);
+        int position = findIndex(uuid);
+        if (position >= 0) {
             storage[position] = storage[--size];
             storage[size] = null;
         } else {
-            throw new RuntimeException("ERROR: удаление невозможно, т.к. индикатор резюме null! ");
+            throw new RuntimeException("ERROR - Impossible to delete, identifier uuid = \"" + uuid +
+                    "\" not found");
         }
     }
 
@@ -82,23 +79,15 @@ public class ArrayStorage {
     }
 
     private int findIndex(String uuid) {
-        // поиск индекса элемента в массиве, под которым храниться резюме
-        // с идентификатором uuid
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(uuid)) {
                 return i;
             }
         }
-        throw new RuntimeException("Резюме с указанным идентификатором uuid = \"" + uuid + "\" в базе не найдено!");
+        return -1;
     }
-    private boolean isNewResume(String uuid) {
-        // поиск индекса элемента в массиве, под которым храниться резюме
-        // с идентификатором uuid
-        for (int i = 0; i < size; i++) {
-            if (storage[i].getUuid().equals(uuid)) {
-                throw new RuntimeException("Резюме с указанным идентификатором uuid = \"" + uuid + "\" уже есть в базе!");
-            }
-        }
-        return true;
+
+    private boolean isExisting(int index) {
+        return (index >= 0);
     }
 }
