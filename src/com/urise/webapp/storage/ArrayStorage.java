@@ -18,31 +18,25 @@ public class ArrayStorage {
     }
 
     public void update(Resume r) {
-        // if resume present
-        if (r != null) {
-            int position = findIndex(r.getUuid());
-            if (position >= 0) {
-                storage[position] = r;
-            }
+        int position = findIndex(r.getUuid());
+        if (position >= 0) {
+            storage[position] = r;
         } else {
-            throw new RuntimeException("ERROR при вызове метода update(..) - объект резюме не создан (null)");
+            throw new RuntimeException("ERROR - Cannot  get, identifier uuid = \"" + r.getUuid() +
+                    "\" not found");
         }
     }
 
     public void save(Resume r) {
-        if (r != null) {
-            int position = findIndex(r.getUuid());
-            if (!isExisting(position)) {
-                if (size >= RESUMES_LIMIT) {
-                    throw new RuntimeException("Количество резюме больше " + RESUMES_LIMIT + "\n");
-                }
-                storage[size++] = r;
-            } else {
-                throw new RuntimeException("Resume with identifier uuid = \"" + r.getUuid() +
-                        "\" already saved");
+        int position = findIndex(r.getUuid());
+        if (!isExisting(position)) {
+            if (size >= RESUMES_LIMIT) {
+                throw new RuntimeException("Количество резюме больше " + RESUMES_LIMIT + "\n");
             }
+            storage[size++] = r;
         } else {
-            throw new RuntimeException("ERROR при вызове метода save(..) - объект резюме не создан");
+            throw new RuntimeException("Resume with identifier uuid = \"" + r.getUuid() +
+                    "\" already saved");
         }
     }
 
@@ -78,6 +72,9 @@ public class ArrayStorage {
         return size;
     }
 
+    /**
+     * @return May return -1 if the specified identifier does not exist in the array objects
+     */
     private int findIndex(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(uuid)) {
@@ -88,6 +85,6 @@ public class ArrayStorage {
     }
 
     private boolean isExisting(int index) {
-        return (index >= 0);
+        return index >= 0;
     }
 }

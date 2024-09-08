@@ -23,7 +23,7 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r3);
 
-        System.out.println("\nCheck  update() - r4");
+        System.out.println("\nCheck update() - r4");
         Resume r4 = new Resume();
         try {
             ARRAY_STORAGE.update(r4);
