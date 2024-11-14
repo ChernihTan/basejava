@@ -1,4 +1,4 @@
-package com.urise.webapp.model;
+package com.webapp.model;
 
 import java.util.UUID;
 

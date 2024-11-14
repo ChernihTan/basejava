@@ -1,6 +1,6 @@
 package com.urise.webapp.storage;
 
-import static org.junit.Assert.*;
+import com.webapp.storage.ArrayStorage;
 
 public class ArrayStorageTest extends AbstractArrayStorageTest {
 

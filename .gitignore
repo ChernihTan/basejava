@@ -3,6 +3,9 @@ out
 *.iml
 log
 lib
+src/com/webapp/collection
+src/com/webapp/MainTestListStorage.java
+src/com/webapp/UnderstandingHashMap.java
 
 
 

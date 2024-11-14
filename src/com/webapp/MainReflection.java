@@ -1,7 +1,7 @@
-package com.urise.webapp;
+package com.webapp;
 
-import com.urise.webapp.model.Resume;
-import com.urise.webapp.reflection.ReflectionChecker;
+import com.webapp.model.Resume;
+import com.webapp.reflection.ReflectionChecker;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

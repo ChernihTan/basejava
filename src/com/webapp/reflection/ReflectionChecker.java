@@ -1,6 +1,6 @@
-package com.urise.webapp.reflection;
+package com.webapp.reflection;
 
-import com.urise.webapp.model.ResumeAnnotation;
+import com.webapp.model.ResumeAnnotation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

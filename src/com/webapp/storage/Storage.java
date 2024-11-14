@@ -1,6 +1,6 @@
-package com.urise.webapp.storage;
+package com.webapp.storage;
 
-import com.urise.webapp.model.Resume;
+import com.webapp.model.Resume;
 
 /**
  * Array based storage for Resumes
