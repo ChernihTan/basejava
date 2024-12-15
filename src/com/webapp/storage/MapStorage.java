@@ -43,7 +43,7 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    public Resume[] getAll() {
+   /* public Resume[] getAll() {
         // a sorted array must be returned, otherwise the test will fail
         List<Resume> list = new ArrayList<>();
         for (Map.Entry<String, Resume> enrty : map.entrySet()) {
@@ -53,7 +53,12 @@ public class MapStorage extends AbstractStorage {
 
         return list.toArray(new Resume[0]);
     }
-
+*/
+    public Resume[] getAll() {
+        return map.values().stream()
+                .sorted()
+                .toArray(Resume[]::new);
+    }
     @Override
     public int size() {
         return map.size();
