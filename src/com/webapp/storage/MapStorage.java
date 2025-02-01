@@ -18,22 +18,22 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected void toUpdate(Resume r, Object searchKey) {
+    protected void doUpdate(Resume r, Object searchKey) {
         map.put((String) searchKey, r);
     }
 
     @Override
-    protected void toSave(Resume r, Object searchKey) {
+    protected void doSave(Resume r, Object searchKey) {
         map.put((String) searchKey, r);
     }
 
     @Override
-    protected Resume toGet(Object searchKey) {
+    protected Resume doGet(Object searchKey) {
         return map.get((String) searchKey);
     }
 
     @Override
-    protected void toDelete(Object searchKey) {
+    protected void doDelete(Object searchKey) {
         map.remove((String) searchKey);
     }
 
@@ -54,10 +54,13 @@ public class MapStorage extends AbstractStorage {
         return list.toArray(new Resume[0]);
     }
 */
-    public Resume[] getAll() {
-        return map.values().stream()
-                .sorted()
-                .toArray(Resume[]::new);
+    public List<Resume> doCopyAll() {
+        List<Resume> list = new ArrayList<>();
+        for (Map.Entry<String, Resume> enrty : map.entrySet()) {
+            list.add(enrty.getValue());
+        }
+        Collections.sort(list);
+        return list;
     }
     @Override
     public int size() {

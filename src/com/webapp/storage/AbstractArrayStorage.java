@@ -4,6 +4,7 @@ import com.webapp.exception.StorageException;
 import com.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class AbstractArrayStorage extends AbstractStorage {
     public static final int STORAGE_LIMIT = 10000;
@@ -20,17 +21,17 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     protected boolean isExist(Object searchKey) {
         return (Integer) searchKey >= 0;
     }
-
+    @Override
     public void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
     }
-
-    protected void toUpdate(Resume r, Object searchKey) {
+    @Override
+    protected void doUpdate(Resume r, Object searchKey) {
         storage[(Integer) searchKey] = r;
     }
-
-    protected void toSave(Resume r, Object searchKey) {
+    @Override
+    protected void doSave(Resume r, Object searchKey) {
         if (size >= STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
         } else {
@@ -38,19 +39,19 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
             size++;
         }
     }
-
-    protected Resume toGet(Object searchKey) {
+    @Override
+    protected Resume doGet(Object searchKey) {
         return storage[(Integer) searchKey];
     }
-
-    protected void toDelete(Object searchKey) {
+    @Override
+    protected void doDelete(Object searchKey) {
         fillDeletedElement((Integer) searchKey);
         storage[size - 1] = null;
         size--;
     }
-
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
+    @Override
+    public List<Resume> doCopyAll() {
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
     }
 
     public int size() {

@@ -20,13 +20,13 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
         try {
             // for (int i = 4; i < STORAGE_LIMIT; i++) { // error
             for (int i = 3; i < STORAGE_LIMIT; i++) {
-                storage.save(new Resume());
+                storage.save(new Resume("Name" + i));
             }
         } catch (StorageException e) {
             Assert.fail("Переполнение произошло раньше времени.");
         }
         // Overflow
-        storage.save(new Resume());
+        storage.save(new Resume("Overflow"));
     }
 
 

@@ -1,0 +1,216 @@
+@startuml
+
+/' diagram meta data start
+config=CallConfiguration;
+{
+  "rootMethod": "MainArray#main(String[])",
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showMethodParametersTypes": false,
+    "showMethodParametersNames": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showCallOrder": false,
+    "edgeMode": "MethodsOnly", // TypesOnly, MethodsOnly, TypesAndMethods, MethodsAndDirectTypeUsage
+    "showDetailedClassStructure": false
+  },
+  "rootClass": "MainArray",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="LR"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1725188096 { 
+   	label=MainArray
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1944001646 { 
+   	label=MainArray
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   MainArray1725188096XXXmain1859653459[
+	label="+ main()"
+	style=filled
+	fillcolor=white
+	tooltip="MainArray
+
+null"
+	penwidth=4
+	fontcolor=darkgreen
+];
+} 
+} 
+
+subgraph cluster_791806387 { 
+   	label=webapp
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1823192026 { 
+   	label=storage
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   subgraph cluster_704226618 { 
+   	label=SortedArrayStorage
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   SortedArrayStorage1689913369XXXfillDeletedElement104431[
+	label="+ fillDeletedElement()"
+	style=filled
+	fillcolor=white
+	tooltip="SortedArrayStorage
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_720633109 { 
+   	label=AbstractArrayStorage
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   AbstractArrayStorage1689913369XXXclear0[
+	label="+ clear()"
+	style=filled
+	fillcolor=white
+	tooltip="AbstractArrayStorage
+
+null"
+	fontcolor=darkgreen
+];
+
+AbstractArrayStorage1689913369XXXsize0[
+	label="+ size()"
+	style=filled
+	fillcolor=white
+	tooltip="AbstractArrayStorage
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_905920558 { 
+   	label=AbstractStorage
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   AbstractStorage1689913369XXXdelete1808118735[
+	label="+ delete()"
+	style=filled
+	fillcolor=white
+	tooltip="AbstractStorage
+
+null"
+	fontcolor=darkgreen
+];
+
+AbstractStorage1689913369XXXget1808118735[
+	label="+ get()"
+	style=filled
+	fillcolor=white
+	tooltip="AbstractStorage
+
+null"
+	fontcolor=darkgreen
+];
+
+AbstractStorage1689913369XXXsave1850559411[
+	label="+ save()"
+	style=filled
+	fillcolor=white
+	tooltip="AbstractStorage
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+} 
+
+'edges    
+AbstractStorage1689913369XXXdelete1808118735 -> SortedArrayStorage1689913369XXXfillDeletedElement104431;
+MainArray1725188096XXXmain1859653459 -> AbstractArrayStorage1689913369XXXclear0;
+MainArray1725188096XXXmain1859653459 -> AbstractArrayStorage1689913369XXXsize0;
+MainArray1725188096XXXmain1859653459 -> AbstractStorage1689913369XXXdelete1808118735;
+MainArray1725188096XXXmain1859653459 -> AbstractStorage1689913369XXXget1808118735;
+MainArray1725188096XXXmain1859653459 -> AbstractStorage1689913369XXXsave1850559411;
+    
+}
+@enduml
